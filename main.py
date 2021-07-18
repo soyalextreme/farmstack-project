@@ -27,13 +27,13 @@ def read_root():
     }
 
 
-@app.get("api/todo")
+@app.get("/api/todo")
 async def get_todo():
     response = await fetch_all_todos()
     return response
 
 
-@app.get("api/todo{title}", response_model=Todo)
+@app.get("/api/todo{title}", response_model=Todo)
 async def get_todo_by_id(title):
     response = await fetch_one_todo(title)
     if response:
@@ -43,7 +43,7 @@ async def get_todo_by_id(title):
     
 
 
-@app.post("api/todo", response_model=Todo)
+@app.post("/api/todo", response_model=Todo)
 async def post_todot(todo:Todo):
     response = await create_todo(todo.dict())
     if response:
@@ -52,7 +52,7 @@ async def post_todot(todo:Todo):
         raise HTTPException(400, "Something went wrong / Bad request")
 
 
-@app.put("api/todo{title}", response_model=Todo)
+@app.put("/api/todo{title}", response_model=Todo)
 async def put_todo(title:str, desc:str):
     response = await update_todo(title, desc)
     if response:
@@ -63,7 +63,7 @@ async def put_todo(title:str, desc:str):
 
 
 
-@app.delete("api/todo{title}")
+@app.delete("/api/todo{title}")
 async def delete_todo(title: str):
     response = await remove_todo(title)
     if response:
