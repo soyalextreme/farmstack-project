@@ -8,7 +8,7 @@ app = FastAPI()
 from database import fetch_all_todos, fetch_one_todo, update_todo, remove_todo, create_todo
 
 
-origins = ['https://localhost:3000']
+origins = ['http://localhost:3000']
 
 
 app.add_middleware(
